@@ -17,6 +17,9 @@
  */
 package ru.mystamps.web.feature.country;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -38,8 +41,6 @@ import ru.mystamps.web.feature.series.SeriesInfoDto;
 import ru.mystamps.web.feature.series.SeriesService;
 import ru.mystamps.web.util.LocaleUtils;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
