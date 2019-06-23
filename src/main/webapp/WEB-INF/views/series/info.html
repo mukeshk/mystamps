@@ -755,6 +755,11 @@
 								</div>
 							</div>
 							
+							<div id="importSeriesSaleForm"
+								togglz:active="ADD_PURCHASES_AND_SALES"
+								sec:authorize="hasAuthority('IMPORT_SERIES_SALES')">
+							</div>
+							
 						</div>
 						
 					</div>
@@ -783,6 +788,21 @@
 		</th:block>
 		/*/-->
 
+		<!--/*/
+		<th:block togglz:active="ADD_PURCHASES_AND_SALES" sec:authorize="hasAuthority('IMPORT_SERIES_SALES')">
+		/*/-->
+		<script src="https://unpkg.com/react@16.8.6/umd/react.development.js" th:src="${REACT_JS}"></script>
+		<script src="https://unpkg.com/react-dom@16.8.6/umd/react-dom.development.js" th:src="${REACT_DOM_JS}"></script>
+		<script src="../../../../../../target/classes/js/components/SeriesSaleImportForm.js" th:src="${SALE_IMPORT_FORM_JS}"></script>
+		<script>
+			var rootElement = React.createElement(SeriesSaleImportForm);
+			var destNode = document.getElementById('importSeriesSaleForm');
+			ReactDOM.render(rootElement, destNode);
+		</script>
+		<!--/*/
+		</th:block>
+		/*/-->
+		
 		<!--/*
 			NOTE: It won't work properly, if user can import a sale but can't view it because
 			initPage() is came from series/info.js file.

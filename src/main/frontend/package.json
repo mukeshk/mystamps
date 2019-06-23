@@ -10,7 +10,7 @@
     "babel-preset-react": "^6.24.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel src --out-dir ../../../target/classes/js"
   },
   "repository": {
     "type": "git",

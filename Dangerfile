@@ -696,8 +696,9 @@ if github.branch_for_head !~ /^gh[0-9]+_/
 end
 
 js_file  = %r{^src/main/javascript/.*\.js$}
+component_file  = %r{^src/main/frontend/src/.*\.js$}
 css_file = %r{^src/main/webapp/.*\.css$}
-modified_resources = git.modified_files.any? { |file| file =~ js_file || file =~ css_file }
+modified_resources = git.modified_files.any? { |file| file =~ js_file || file =~ component_file || file =~ css_file }
 updated_url = git.modified_files.include? 'src/main/java/ru/mystamps/web/feature/site/ResourceUrl.java'
 if modified_resources && !updated_url
 	warn("danger check: looks like you forgot to update `ResourceUrl.RESOURCES_VERSION` after modifying JS/CSS file(s)")
