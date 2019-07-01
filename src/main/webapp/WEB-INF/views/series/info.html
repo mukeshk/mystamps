@@ -794,8 +794,23 @@
 		<script src="https://unpkg.com/react@16.8.6/umd/react.development.js" th:src="${REACT_JS}"></script>
 		<script src="https://unpkg.com/react-dom@16.8.6/umd/react-dom.development.js" th:src="${REACT_DOM_JS}"></script>
 		<script src="../../../../../../target/classes/js/components/SeriesSaleImportForm.js" th:src="${SALE_IMPORT_FORM_JS}"></script>
-		<script>
+		<script th:inline="javascript">
+			/*[+
+			var props = {
+				'l10n': {
+					't_import_info_who_selling_series': [[ #{t_import_info_who_selling_series} ]],
+					't_could_not_import_info':          [[ #{t_could_not_import_info} ]],
+					't_url':                            [[ #{t_url} ]],
+					't_import_info':                    [[ #{t_import_info} ]]
+				}
+			};
+			var rootElement = React.createElement(SeriesSaleImportForm, props);
+			+]*/
+			
+			/*[- */
 			var rootElement = React.createElement(SeriesSaleImportForm);
+			/* -]*/
+			
 			var destNode = document.getElementById('importSeriesSaleForm');
 			ReactDOM.render(rootElement, destNode);
 		</script>
