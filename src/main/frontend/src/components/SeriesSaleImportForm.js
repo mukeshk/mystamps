@@ -6,6 +6,12 @@
 /* TODO: remove id attributes */
 class SeriesSaleImportForm extends React.Component {
 	
+	handleSubmit(event) {
+		// TODO: submit to the server by using fetch()
+		console.log('SUBMIT', event.target.url.value);
+		event.preventDefault();
+	}
+	
 	render() {
 		return (
 			<div className="row">
@@ -26,7 +32,7 @@ class SeriesSaleImportForm extends React.Component {
 					</div>
 					<div className="row">
 						<div className="col-sm-12">
-							<form id="import-series-sale-form" className="form-horizontal">
+							<form id="import-series-sale-form" className="form-horizontal" onSubmit={this.handleSubmit}>
 								
 								<div className="form-group form-group-sm">
 									{/* TODO: deal with label for+id */}
@@ -35,7 +41,7 @@ class SeriesSaleImportForm extends React.Component {
 										<span className="required_field"> *</span>
 									</label>
 									<div className="col-sm-6">
-										<input type="url" id="series-sale-url" className="form-control" required="required" />
+										<input id="series-sale-url" name="url" type="url" className="form-control" required="required" />
 										{/* TODO: add logic for hiding/showing this element */}
 										<span id="series-sale-url.errors" className="help-block hidden"></span>
 									</div>
