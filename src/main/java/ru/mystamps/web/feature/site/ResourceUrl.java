@@ -42,7 +42,7 @@ public final class ResourceUrl {
 	private static final String PARTICIPANT_ADD_JS  = "/public/js/" + RESOURCES_VERSION + "/participant/add.min.js";
 	private static final String SERIES_ADD_JS       = "/public/js/" + RESOURCES_VERSION + "/series/add.min.js";
 	private static final String SERIES_INFO_JS      = "/public/js/" + RESOURCES_VERSION + "/series/info.min.js";
-	private static final String SALE_IMPORT_FORM_JS = "/public/js/" + RESOURCES_VERSION + "/components/SeriesSaleImportForm.js";
+	private static final String SALE_IMPORT_FORM_JS = "/public/js/" + RESOURCES_VERSION + "/components/SeriesSaleImportForm.min.js";
 	private static final String BOOTSTRAP_LANGUAGE  = "https://cdn.jsdelivr.net/gh/usrz/bootstrap-languages@3ac2a3d2b27ac43a471cd99e79d378a03b2c6b5f/languages.min.css";
 	private static final String FAVICON_ICO         = "/favicon.ico";
 
