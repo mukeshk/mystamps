@@ -1233,7 +1233,7 @@
 			<activation>
 				<file>
 					<!-- Should be in sync with Babel configuration from src/main/frontend/package.json -->
-					<missing>src/main/javascript/components</missing>
+					<missing>target/classes/js/components</missing>
 				</file>
 			</activation>
 			<build>
