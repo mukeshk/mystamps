@@ -5,14 +5,14 @@
 
 function initPage(ajax, importSeriesSaleUrl, csrfHeaderName, csrfTokenValue) {
 	$('#import-series-sale-form').on('submit', function sendImportRequest(event) {
-//		event.preventDefault();
+		event.preventDefault(); // DONE
 		
-		var url = $('#series-sale-url').val();
+		var url = $('#series-sale-url').val(); // DONE
 		if (url == null) {
 			return;
 		}
 		
-//		disableImportSeriesSaleForm(true);
+		disableImportSeriesSaleForm(true); // DONE
 		hideFieldErrors();
 		hideImportFailedMessage();
 		

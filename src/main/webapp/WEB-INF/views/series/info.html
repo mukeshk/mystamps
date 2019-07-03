@@ -797,6 +797,7 @@
 		<script th:inline="javascript">
 			/*[+
 			var props = {
+				'url': [[ '__@{${IMPORT_SERIES_SALES}}__' ]],
 				'l10n': {
 					't_import_info_who_selling_series': [[ #{t_import_info_who_selling_series} ]],
 					't_could_not_import_info':          [[ #{t_could_not_import_info} ]],
@@ -808,7 +809,7 @@
 			+]*/
 			
 			/*[- */
-			var rootElement = React.createElement(SeriesSaleImportForm);
+			var rootElement = React.createElement(SeriesSaleImportForm, {'url': '/series/sales/import'});
 			/* -]*/
 			
 			var destNode = document.getElementById('importSeriesSaleForm');

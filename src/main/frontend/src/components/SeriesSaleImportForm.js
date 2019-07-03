@@ -17,14 +17,32 @@ class SeriesSaleImportForm extends React.Component {
 	handleSubmit(event) {
 		event.preventDefault();
 		
-		let url = event.target.url.value;
+		const url = event.target.url.value;
 		
 		// TODO: block execution (see https://reactjs.org/docs/react-component.html#setstate)
 		this.setState({ disabled: true });
 		
-		// TODO: submit to the server by using fetch()
+		const request = new Request(
+			this.props.url,
+			{
+				method: 'POST',
+				body: JSON.stringify({ 'url': url }),
+				cache: 'no-store'//,
+				//credentials: 'same-origin'
+			}
+		);
 		console.log('SUBMIT', url);
+		fetch(request)
+			.then(response => {
+				if (response.ok) {
+					return response.json();
+				}
+				throw new Error(response);
+			})
+			.then(data   => console.log(data))
+			.catch(error => console.error(error));
 		
+		console.log('SUBMITTED');
 		// TODO: temporary code
 		this.setState({ disabled: false });
 	}
