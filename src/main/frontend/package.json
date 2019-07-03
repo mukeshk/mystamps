@@ -10,7 +10,7 @@
     "babel-preset-react": "^6.24.1"
   },
   "scripts": {
-    "build": "babel src --out-dir ../../../target/classes/js"
+    "build": "babel src --out-dir ../javascript"
   },
   "repository": {
     "type": "git",
