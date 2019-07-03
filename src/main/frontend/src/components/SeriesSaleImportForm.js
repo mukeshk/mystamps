@@ -22,13 +22,17 @@ class SeriesSaleImportForm extends React.Component {
 		// TODO: block execution (see https://reactjs.org/docs/react-component.html#setstate)
 		this.setState({ disabled: true });
 		
+		const headers = {};
+		headers[this.props.csrfHeaderName] = this.props.csrfTokenValue;
+		headers['Content-Type'] = 'application/json; charset=UTF-8';
+		
 		const request = new Request(
 			this.props.url,
 			{
 				method: 'POST',
+				headers,
 				body: JSON.stringify({ 'url': url }),
-				cache: 'no-store'//,
-				//credentials: 'same-origin'
+				cache: 'no-store'
 			}
 		);
 		console.log('SUBMIT', url);
