@@ -17,7 +17,6 @@ phantomjsdriver.log
 src/main/webapp/WEB-INF/static/styles/*.min.css
 src/main/javascript/*.min.js
 src/main/javascript/*/*.min.js
-src/main/javascript/components/
 
 # managed by frontend-maven-plugin
 src/main/frontend/node/
