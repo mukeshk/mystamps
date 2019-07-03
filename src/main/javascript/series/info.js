@@ -14,20 +14,20 @@ function initPage(ajax, importSeriesSaleUrl, csrfHeaderName, csrfTokenValue) {
 		
 		disableImportSeriesSaleForm(true); // DONE
 		hideFieldErrors();
-		hideImportFailedMessage();
+		hideImportFailedMessage(); // DONE
 		
-		var data = JSON.stringify({
-			url: url
-		});
-		var headers = {};
-		headers[csrfHeaderName] = csrfTokenValue;
+		var data = JSON.stringify({  // DONE
+			url: url // DONE
+		}); // DONE
+		var headers = {};  // DONE
+		headers[csrfHeaderName] = csrfTokenValue;  // DONE
 		
-		ajax({
-			url: importSeriesSaleUrl,
-			method: 'POST',
-			contentType: 'application/json; charset=UTF-8',
-			headers: headers,
-			data: data
+		ajax({  // DONE
+			url: importSeriesSaleUrl,  // DONE
+			method: 'POST', // DONE
+			contentType: 'application/json; charset=UTF-8',  // DONE
+			headers: headers, // DONE
+			data: data // DONE
 		
 		}).done(function populateAddSeriesSaleForm(result) {
 			var urlField = $('#series-sale-url');
