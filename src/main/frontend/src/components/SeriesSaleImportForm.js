@@ -22,9 +22,9 @@ class SeriesSaleImportForm extends React.Component {
 		// TODO: block execution (see https://reactjs.org/docs/react-component.html#setstate)
 		this.setState({ disabled: true });
 		
-		const headers = {};
-		headers[this.props.csrfHeaderName] = this.props.csrfTokenValue;
-		headers['Content-Type'] = 'application/json; charset=UTF-8';
+		const headers = new Headers();
+		headers.set('Content-Type', 'application/json; charset=UTF-8');
+		headers.set(this.props.csrfHeaderName, this.props.csrfTokenValue);
 		
 		const request = new Request(
 			this.props.url,
