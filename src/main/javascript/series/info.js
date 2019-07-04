@@ -34,7 +34,7 @@ function initPage(ajax, importSeriesSaleUrl, csrfHeaderName, csrfTokenValue) {
 			var url = urlField.val();
 			urlField.val('');
 			
-			populateTransactionDateWithTodayDate(); // TODO
+			populateTransactionDateWithTodayDate();
 			if (result.sellerId != null) {
 				$('#seller').val(result.sellerId);
 			}

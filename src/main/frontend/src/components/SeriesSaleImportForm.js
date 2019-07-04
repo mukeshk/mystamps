@@ -57,17 +57,19 @@ class SeriesSaleImportForm extends React.Component {
 					});
 					return;
 				}
+				
+				// TODO: specify input value via react
 				let urlField = document.getElementById('series-sale-url');
 				let url = urlField.value;
 				urlField.value = '';
 				
-				// TODO: set date in another form
+				var today = DateUtils.formatDateToDdMmYyyy(new Date());
+				document.getElementById('date').value = today;
+                
 				document.getElementById('url').value = url;
 				document.getElementById('price').value = data.price;
-				// TODO: choose option from select by value
 				document.getElementById('currency').value = data.currency;
 				if (data.sellerId) {
-					// TODO: choose option from select by value
 					document.getElementById('seller').value = data.sellerId;
 				}
 				this.setState({ isDisabled: false });
