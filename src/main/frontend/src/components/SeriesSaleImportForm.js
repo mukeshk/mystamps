@@ -11,6 +11,7 @@ class SeriesSaleImportForm extends React.Component {
 		this.state = {
 			isDisabled: false,
 			hasServerError: false,
+			validationErrors: []
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
@@ -21,7 +22,11 @@ class SeriesSaleImportForm extends React.Component {
 		const url = event.target.url.value;
 		
 		// TODO: block execution (see https://reactjs.org/docs/react-component.html#setstate)
-		this.setState({ isDisabled: true });
+		this.setState({
+			isDisabled: true,
+			hasServerError: false,
+			validationErrors: []
+		});
 		
 		const headers = new Headers();
 		headers.set('Content-Type', 'application/json; charset=UTF-8');
@@ -36,23 +41,49 @@ class SeriesSaleImportForm extends React.Component {
 				cache: 'no-store'
 			}
 		);
-		console.log('SUBMIT', url);
+		
 		fetch(request)
 			.then(response => {
-				if (response.ok) {
+				if (response.ok || response.status == 400) {
 					return response.json();
 				}
-				throw new Error(response);
+				throw new Error(response.statusText);
 			})
-			.then(data   => console.log(data))
-			.catch(error => console.error(error));
-		
-		console.log('SUBMITTED');
-		// TODO: temporary code
-		this.setState({ isDisabled: false });
+			.then(data => {
+				if (data.hasOwnProperty('fieldErrors')) {
+					this.setState({
+						isDisabled: false,
+						validationErrors: data.fieldErrors.url
+					});
+					return;
+				}
+				let urlField = document.getElementById('series-sale-url');
+				let url = urlField.value;
+				urlField.value = '';
+				
+				// TODO: set date in another form
+				document.getElementById('url').value = url;
+				document.getElementById('price').value = data.price;
+				// TODO: choose option from select by value
+				document.getElementById('currency').value = data.currency;
+				if (data.sellerId) {
+					// TODO: choose option from select by value
+					document.getElementById('seller').value = data.sellerId;
+				}
+				this.setState({ isDisabled: false });
+			})
+			.catch(error => {
+				console.error(error);
+				this.setState({
+					isDisabled: false,
+					hasServerError: true
+				});
+			});
 	}
 	
 	render() {
+		let hasValidationErrors = this.state.validationErrors.length > 0;
+		
 		return (
 			<div className="row">
 				<div className="col-sm-12">
@@ -71,7 +102,7 @@ class SeriesSaleImportForm extends React.Component {
 					</div>
 					<div className="row">
 						<div className="col-sm-12">
-							<form id="import-series-sale-form" className="form-horizontal" onSubmit={this.handleSubmit}>
+							<form id="import-series-sale-form" className={`form-horizontal ${hasValidationErrors ? 'has-error' : ''}`} onSubmit={this.handleSubmit}>
 								
 								<div className="form-group form-group-sm">
 									{/* TODO: deal with label for+id */}
@@ -81,8 +112,9 @@ class SeriesSaleImportForm extends React.Component {
 									</label>
 									<div className="col-sm-6">
 										<input id="series-sale-url" name="url" type="url" className="form-control" required="required" disabled={this.state.isDisabled} />
-										{/* TODO: add logic for hiding/showing this element */}
-										<span id="series-sale-url.errors" className="help-block hidden"></span>
+										<span id="series-sale-url.errors" className={`help-block ${hasValidationErrors ? '' : 'hidden'}`}>
+											{ this.state.validationErrors.join(', ') }
+										</span>
 									</div>
 								</div>
 								
